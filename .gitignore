@@ -7,3 +7,4 @@
 *.tfplan
 
 task.tpl.json
+.terraform.lock.hcl
