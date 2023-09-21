@@ -37,20 +37,6 @@ resource "aws_vpc_endpoint" "dkr_api" {
     Environment = "dev"
   }
 }
-resource "aws_vpc_endpoint" "logs" {
-  vpc_id              = module.vpc.vpc_id
-  private_dns_enabled = true
-  service_name        = "com.amazonaws.${data.aws_region.current.name}.logs"
-  vpc_endpoint_type   = "Interface"
-  security_group_ids = [
-    aws_security_group.vpc_endpoint.id,
-  ]
-  subnet_ids = module.vpc.private_subnets
-  tags = {
-    Name        = "logs-endpoint"
-    Environment = "dev"
-  }
-}
 
 resource "aws_vpc_endpoint" "rds" {
   vpc_id              = module.vpc.vpc_id
