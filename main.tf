@@ -7,6 +7,8 @@ terraform {
   }
 }
 
+data "aws_caller_identity" "current" {}
+data "aws_region" "current" {}
 locals {
   aws_region  = "us-east-1"
   prefix      = "fargate-web"
@@ -16,13 +18,6 @@ locals {
   }
   vpc_cidr = "10.0.0.0/16"
   imagem = "233181867717.dkr.ecr.us-east-1.amazonaws.com/web-ecr:latest"
-}
-data "aws_caller_identity" "current" {}
-data "aws_region" "current" {}
-
-
-
-locals {
   aws_account_id = data.aws_caller_identity.current.account_id
   service_name = "kubenews"
   service_port = 8080
